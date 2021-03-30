@@ -21,7 +21,17 @@
 
         $img = Image::make(Storage::disk('local')->get('base.png'));
 
-        $img->insert(Storage::get($request->get('brainlet')), 'bottom-left');
+
+        if (!$request->filled('')) {
+            $brainlets = collect(Storage::disk('local')->allFiles('faces'));
+
+
+            $img->insert(Storage::get($brainlets->random()), 'bottom-left');
+        }
+        else {
+
+            $img->insert(Storage::get($request->get('brainlet')), 'bottom-left');
+        }
 
 
         $im = $img->getCore();
