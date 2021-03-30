@@ -22,7 +22,7 @@
         $img = Image::make(Storage::disk('local')->get('base.png'));
 
 
-        if (!$request->filled('')) {
+        if (!$request->filled('brainlet')) {
             $brainlets = collect(Storage::disk('local')->allFiles('faces'));
 
 
