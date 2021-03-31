@@ -13,7 +13,7 @@
         "intervention/image": "^2.5",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
-        "stil/gd-text": "^1.1"
+        "molbal/gd-text": "^1.1.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
