@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<form action="{{route('generate')}}" method="post" target="_blank">
+<form action="{{route('brainlet.make')}}" method="post" target="_blank">
 <div class="container">
     <div class="row mt-5">
         <div class="col-sm-12 mb-3">
@@ -40,7 +40,6 @@
                     <div class="form-group mt-3">
                         <label for="">Brainlet</label>
                         <select name="brainlet" id="brainlet" class="form-control ">
-                            <option data-img-src="{{asset('faces/random.png')}}" value="">Véletlen</option>
                             @foreach($brainlets as $brainlet)
                                 <option data-img-src="{{asset($brainlet)}}"
                                         value="{{$brainlet}}">{{\Illuminate\Support\Str::of($brainlet)->replace('-',' ')->replace('faces/brainlet', '')->replace('.jpg', '')->trim()->ucfirst()}}</option>
