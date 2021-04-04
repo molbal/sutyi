@@ -15,7 +15,7 @@
 <body>
 
 <form action="{{route('brainlet.make')}}" method="post" target="_blank">
-<div class="container">
+<div class="container mb-5">
     <div class="row mt-5">
         <div class="col-sm-12 mb-3">
             <h3>Brainlet generátor</h3>
@@ -26,13 +26,13 @@
                 @csrf
                 <div class="col-sm-12">
                     <div class="form-group mt-3">
-                        <label for="">Név</label>
+                        <label for="">Name</label>
                         <input name="name" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group mt-3">
-                        <label for="">Komment</label>
+                        <label for="">Comment</label>
                         <textarea name="comment" class="form-control"></textarea>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                 </div>
         </div>
         <div class="card-footer">
-            <input type="submit" class="btn btn-primary" value="Mehet">
+            <input type="submit" class="btn btn-primary" value="Generate">
         </div>
     </div>
 </div>
