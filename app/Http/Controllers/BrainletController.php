@@ -14,9 +14,18 @@ class BrainletController extends Controller
 {
     public function create(MakeBrainletRequest $request) {
 
+        #to remove 4byte characters like emojis etc..
+        function replace_4byte($string) {
+            return preg_replace('%(?:
+          \xF0[\x90-\xBF][\x80-\xBF]{2}      # planes 1-3
+        | [\xF1-\xF3][\x80-\xBF]{3}          # planes 4-15
+        | \xF4[\x80-\x8F][\x80-\xBF]{2}      # plane 16
+    )%xs', '', $string);
+        }
+
         $brain = Brainlet::create([
             'name' => $request->get('name'),
-            'comment' => $request->get('comment'),
+            'comment' => replace_4byte($request->get('comment')),
             'brainlet' => $request->get('brainlet')]);
 
         return redirect()->route('brainlet.get', ['id' => $brain->id]);
@@ -25,6 +34,7 @@ class BrainletController extends Controller
 
     public function get(int $id) {
         $brain = Brainlet::whereId($id)->firstOrFail();
+
 
         $img = Image::make(Storage::disk('local')->get('white.png'));
         if ($brain->brainlet) {
@@ -35,7 +45,7 @@ class BrainletController extends Controller
         $im = $img->getCore();
 
         $box = new Box($im);
-        $box->setFontFace(storage_path("app").'/font.ttf'); // http://www.dafont.com/minecraftia.font
+        $box->setFontFace(storage_path("app").'/font.ttf');
         $box->setFontColor(new Color(0, 0, 0));
         $box->setLineHeight(1.2);
         $box->setBox(130+128,50, 350, 320);
